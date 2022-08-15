@@ -1,0 +1,22 @@
+div class="nested-fields"
+  div class="grid grid-cols-3 gap-4 mt-5"
+
+    div
+      = form.label :employer
+      = form.text_field :employer, data: { action: "forms#input", required: true, errors_container: "employer_errors_TEMPLATE_RECORD" }, class: "rounded-md border border-gray-200 px-3 py-2 mt-2 w-full"
+      div id="employer_errors_TEMPLATE_RECORD" class="errors p-2 text-xs bg-red-200 text-red-800 rounded-md mt-2 hidden"
+
+    div
+      = form.label :date_started
+      = form.text_field :date_started, data: { action: "forms#input", required: true, date: true, errors_container: "date_started_errors_TEMPLATE_RECORD", controller: "flatpickr", flatpickr_date_format: "m/d/Y" }, class: 'rounded-md border border-gray-200 px-3 py-2 mt-2 w-full'
+      div id="date_started_errors_TEMPLATE_RECORD" class="errors p-2 text-xs bg-red-200 text-red-800 rounded-md mt-2 hidden"
+
+    div
+      = form.label :date_ended
+      = form.text_field :date_ended, data: { action: "forms#input", required: true, date: true, errors_container: "date_ended_errors_TEMPLATE_RECORD", controller: "flatpickr", flatpickr_date_format: "m/d/Y" }, class: 'rounded-md border border-gray-200 px-3 py-2 mt-2 w-full'
+      div id="date_ended_errors_TEMPLATE_RECORD" class="errors p-2 text-xs bg-red-200 text-red-800 rounded-md mt-2 hidden"
+
+  div class="mt-2"
+    = link_to "Remove", "#", data: { action: "nested-forms#remove_association" }, class: "text-red-500"
+
+  hr class="my-5"

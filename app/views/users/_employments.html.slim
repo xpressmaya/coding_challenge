@@ -1,0 +1,18 @@
+= turbo_frame_tag :remote_modal do
+  = tag.div data: { controller: "turbo-modal employments nested-forms", action: "turbo:submit-end->turbo-modal#submitEnd" }, class: "absolute top-12 inset-x-72 p-8 z-2 bg-white rounded-md" do
+
+    h2 class="font-bold text-2xl" Employment
+
+    = form_with(model: user, url: { controller: "users", action: "employments", user_id: user.id }, class: "contents", data: { controller: "forms", action: "turbo:submit-start->forms#submitStart" }) do |form|
+
+      template data-nested-forms-target="template"
+        = form.fields_for :employments, Employment.new, child_index: 'TEMPLATE_RECORD' do |employment|
+          = render 'employments/form', form: employment
+
+      div id="fields-container"
+
+      div class="grid grid-cols-3 gap-4 mt-10 w-full"
+        = button_tag "Cancel", data: { action: "turbo-modal#hideModal" }, type: "button", class: "h-10 px-6 font-semibold rounded-md bg-red-500 text-white"
+        div data-nested-forms-target="add_item"
+          = button_tag "Add Record", data: { action: "nested-forms#add_association" }, type: "button", class: "h-10 px-6 font-semibold rounded-md bg-white border border-gray-200 w-full"
+        = form.submit "Save", class: "h-10 px-6 font-semibold rounded-md bg-blue-500 text-white cursor-pointer"

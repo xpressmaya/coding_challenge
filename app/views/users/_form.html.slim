@@ -1,0 +1,31 @@
+= form_with(model: user, class: "contents", data: { controller: "forms", action: "turbo:submit-start->forms#submitStart" }) do |form|
+
+  div class="grid grid-cols-2 gap-4 mt-5"
+
+    div
+      = form.label :first_name
+      = form.text_field :first_name, data: { action: "forms#input", required: true, max_length: 25, errors_container: "first_name_errors" }, class: "rounded-md border border-gray-200 px-3 py-2 mt-2 w-full"
+      div id="first_name_errors" class="errors p-2 text-xs bg-red-200 text-red-800 rounded-md mt-2 hidden"
+
+    div
+      = form.label :last_name
+      = form.text_field :last_name, data: { action: "forms#input", required: true, max_length: 50, errors_container: "last_name_errors" }, class: "rounded-md border border-gray-200 px-3 py-2 mt-2 w-full"
+      div id="last_name_errors" class="errors p-2 text-xs bg-red-200 text-red-800 rounded-md mt-2 hidden"
+
+    div
+      = form.label :nick_name
+      = form.text_field :nick_name, class: "rounded-md border border-gray-200 px-3 py-2 mt-2 w-full"
+
+    div
+      = form.label :email_address
+      = form.text_field :email_address, data: { action: "forms#input", required: true, email: true, errors_container: "email_address_errors" }, class: "rounded-md border border-gray-200 px-3 py-2 mt-2 w-full"
+      div id="email_address_errors" class="errors p-2 text-xs bg-red-200 text-red-800 rounded-md mt-2 hidden"
+
+    div
+      = form.label :phone_number
+      = form.text_field :phone_number, data: { action: "forms#input", required: true, phone: true, errors_container: "phone_number_errors" }, class: "rounded-md border border-gray-200 px-3 py-2 mt-2 w-full"
+      div id="phone_number_errors" class="errors p-2 text-xs bg-red-200 text-red-800 rounded-md mt-2 hidden"
+
+  div class="grid grid-cols-2 gap-4 mt-10"
+    = button_tag "Cancel", data: { action: "turbo-modal#hideModal" }, type: "button", class: "h-10 px-6 font-semibold rounded-md bg-red-500 text-white"
+    = form.submit "Save", class: "h-10 px-6 font-semibold rounded-md bg-blue-500 text-white cursor-pointer"
