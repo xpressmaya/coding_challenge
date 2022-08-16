@@ -10,11 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_14_130102) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "employments", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2022_08_16_182447) do
+  create_table "employments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "employer", null: false
     t.string "date_started", null: false
     t.string "date_ended", null: false
@@ -24,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_14_130102) do
     t.index ["user_id"], name: "index_employments_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "nick_name"

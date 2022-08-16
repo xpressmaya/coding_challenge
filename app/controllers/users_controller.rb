@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ employments ]
   before_action :ensure_frame_response, only: [:new, :employments]
 
   # GET /users or /users.json
@@ -32,6 +31,7 @@ class UsersController < ApplicationController
   end
 
   def employments
+    @user = User.find(params[:user_id])
     respond_to do |format|
       if @user.update(employment_params)
         # format.html { redirect_to employment_url(@employment), notice: "Employment was successfully updated." }
@@ -44,10 +44,6 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:user_id])
-    end
 
     # Only allow a list of trusted parameters through.
     def user_params
